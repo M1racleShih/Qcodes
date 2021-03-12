@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+65.gcf0e83a2f5
+                0.23.0+77.gec9b8353ce
               </div>
             
           
@@ -228,11 +228,20 @@
 <p>Slack bot is used to send information about qcodes via Slack IMs.
 Some default commands are provided, and custom commands/tasks can be
 attached (see below).</p>
-<p>To setup the Slack bot, a bot first has to be registered via Slack
-by clicking ‘creating a new bot user’ on <a class="reference external" href="https://api.slack.com/bot-users">https://api.slack.com/bot-users</a>.
-Once registered, the bot will have a name and unique token.
+<p>To setup the Slack bot, a bot first has to be created via Slack
+by clicking ‘Create New App’ on <a class="reference external" href="https://api.slack.com/apps">https://api.slack.com/apps</a>.
+Once created, the bot will have a name and unique token.
 These and other settings have to be saved in a config dict (see init( or
 Parameters) in <a class="reference internal" href="#qcodes.utils.slack.Slack" title="qcodes.utils.slack.Slack"><code class="xref py py-class docutils literal notranslate"><span class="pre">Slack</span></code></a>).</p>
+<p>The App containing your bot needs to have the following bot token scopes to
+perform all methods successfully:
+- channels:history
+- channels:read
+- chat:write
+- files:write
+- users:read
+These can be set after clicking OAuth &amp; Permissions in the left menubar after
+selecting your bot at https://api.slack.com/apps (or during creation).</p>
 <p>Communication with the Slack bot is performed via instant messaging.
 When an IM is sent to the Slack bot, it will be processed during the next
 <cite>update()</cite> call (provided the username is registered in the config).

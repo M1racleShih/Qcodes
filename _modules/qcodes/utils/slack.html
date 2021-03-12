@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.23.0+65.gcf0e83a2f5
+                0.23.0+77.gec9b8353ce
               </div>
             
           
@@ -171,11 +171,21 @@
 <span class="sd">Some default commands are provided, and custom commands/tasks can be</span>
 <span class="sd">attached (see below).</span>
 
-<span class="sd">To setup the Slack bot, a bot first has to be registered via Slack</span>
-<span class="sd">by clicking &#39;creating a new bot user&#39; on https://api.slack.com/bot-users.</span>
-<span class="sd">Once registered, the bot will have a name and unique token.</span>
+<span class="sd">To setup the Slack bot, a bot first has to be created via Slack</span>
+<span class="sd">by clicking &#39;Create New App&#39; on https://api.slack.com/apps.</span>
+<span class="sd">Once created, the bot will have a name and unique token.</span>
 <span class="sd">These and other settings have to be saved in a config dict (see init( or</span>
 <span class="sd">Parameters) in :class:`Slack`).</span>
+
+<span class="sd">The App containing your bot needs to have the following bot token scopes to</span>
+<span class="sd">perform all methods successfully:</span>
+<span class="sd">- channels:history</span>
+<span class="sd">- channels:read</span>
+<span class="sd">- chat:write</span>
+<span class="sd">- files:write</span>
+<span class="sd">- users:read</span>
+<span class="sd">These can be set after clicking OAuth &amp; Permissions in the left menubar after</span>
+<span class="sd">selecting your bot at https://api.slack.com/apps (or during creation).</span>
 
 <span class="sd">Communication with the Slack bot is performed via instant messaging.</span>
 <span class="sd">When an IM is sent to the Slack bot, it will be processed during the next</span>
@@ -200,24 +210,24 @@
 <span class="sd">performed every time `update()` is called.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
-<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
-<span class="kn">import</span> <span class="nn">inspect</span>
-<span class="kn">from</span> <span class="nn">slacker</span> <span class="kn">import</span> <span class="n">Slacker</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
 <span class="kn">from</span> <span class="nn">requests.exceptions</span> <span class="kn">import</span> <span class="n">ReadTimeout</span><span class="p">,</span> <span class="n">HTTPError</span><span class="p">,</span> <span class="n">ConnectTimeout</span>
 <span class="kn">from</span> <span class="nn">requests.packages.urllib3.exceptions</span> <span class="kn">import</span> <span class="n">ReadTimeoutError</span>
+<span class="kn">from</span> <span class="nn">slack_sdk</span> <span class="kn">import</span> <span class="n">WebClient</span>
 
-
-<span class="kn">from</span> <span class="nn">qcodes.plots.base</span> <span class="kn">import</span> <span class="n">BasePlot</span>
 <span class="kn">from</span> <span class="nn">qcodes</span> <span class="kn">import</span> <span class="n">config</span> <span class="k">as</span> <span class="n">qc_config</span>
 <span class="kn">from</span> <span class="nn">qcodes.instrument.parameter</span> <span class="kn">import</span> <span class="n">_BaseParameter</span>
 <span class="kn">from</span> <span class="nn">qcodes.loops</span> <span class="kn">import</span> <span class="n">active_loop</span><span class="p">,</span> <span class="n">active_data_set</span>
+<span class="kn">from</span> <span class="nn">qcodes.plots.base</span> <span class="kn">import</span> <span class="n">BasePlot</span>
 
 
 <div class="viewcode-block" id="SlackTimeoutWarning"><a class="viewcode-back" href="../../../api/utils/slack.html#qcodes.utils.slack.SlackTimeoutWarning">[docs]</a><span class="k">class</span> <span class="nc">SlackTimeoutWarning</span><span class="p">(</span><span class="ne">UserWarning</span><span class="p">):</span>
@@ -286,8 +296,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">qc_config</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">slack</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">slack</span> <span class="o">=</span> <span class="n">Slacker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">bot_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">get_user_id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;bot_name&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slack</span> <span class="o">=</span> <span class="n">WebClient</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">users</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_users</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;names&#39;</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_im_ids</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">)</span>
 
@@ -364,11 +373,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            dict: User information.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">users</span> <span class="o">=</span> <span class="p">[</span><span class="n">user</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span> <span class="k">if</span>
-                 <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">user_id</span><span class="p">]</span>
-        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Could not find unique user with id </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-            <span class="n">user_id</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">users</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">users_info</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="n">user_id</span><span class="p">)[</span><span class="s1">&#39;user&#39;</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="Slack.get_users"><a class="viewcode-back" href="../../../api/utils/slack.html#qcodes.utils.slack.Slack.get_users">[docs]</a>    <span class="k">def</span> <span class="nf">get_users</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">usernames</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -380,8 +385,8 @@
 <span class="sd">            dict: {username: user}</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">users</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="s1">&#39;members&#39;</span><span class="p">]:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">users_list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">member</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;members&#39;</span><span class="p">]:</span>
             <span class="k">if</span> <span class="n">member</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">usernames</span><span class="p">:</span>
                 <span class="n">users</span><span class="p">[</span><span class="n">member</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">member</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">users</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">usernames</span><span class="p">):</span>
@@ -400,14 +405,14 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">im</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
-        <span class="n">user_ids</span> <span class="o">=</span> <span class="p">{</span><span class="n">user</span><span class="p">:</span> <span class="n">users</span><span class="p">[</span><span class="n">user</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="p">}</span>
-        <span class="n">im_ids</span> <span class="o">=</span> <span class="p">{</span><span class="n">im</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]:</span> <span class="n">im</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">im</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="s1">&#39;ims&#39;</span><span class="p">]}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">conversations_list</span><span class="p">(</span><span class="n">types</span><span class="o">=</span><span class="s1">&#39;im&#39;</span><span class="p">)</span>
+        <span class="n">user_ids</span> <span class="o">=</span> <span class="p">{</span><span class="n">username</span><span class="p">:</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">username</span><span class="p">,</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">im_ids</span> <span class="o">=</span> <span class="p">{</span><span class="n">chan</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">]:</span> <span class="n">chan</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">chan</span> <span class="ow">in</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]}</span>
         <span class="k">for</span> <span class="n">username</span><span class="p">,</span> <span class="n">user_id</span> <span class="ow">in</span> <span class="n">user_ids</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">if</span> <span class="n">user_id</span> <span class="ow">in</span> <span class="n">im_ids</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">user_id</span> <span class="ow">in</span> <span class="n">im_ids</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
                 <span class="n">users</span><span class="p">[</span><span class="n">username</span><span class="p">][</span><span class="s1">&#39;im_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">im_ids</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span>
                 <span class="c1"># update last ts</span>
-                <span class="n">messages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_im_messages</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">messages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_im_messages</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">messages</span><span class="p">:</span>
                     <span class="n">users</span><span class="p">[</span><span class="n">username</span><span class="p">][</span><span class="s1">&#39;last_ts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">messages</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;ts&#39;</span><span class="p">])</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -423,13 +428,19 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            List of IM messages.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># provide backward compatibility with &#39;count&#39; keyword. It still works,</span>
+        <span class="c1"># but is undocumented. &#39;count&#39; likely does the same as &#39;limit&#39;, but</span>
+        <span class="c1"># &#39;limit&#39; takes precedence</span>
+        <span class="k">if</span> <span class="s1">&#39;limit&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;limit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
         <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">[</span><span class="n">username</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;im_id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">channel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">im</span><span class="o">.</span><span class="n">history</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span>
-                                             <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">]</span></div>
+            <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">conversations_history</span><span class="p">(</span><span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span>
+                                                        <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="s1">&#39;messages&#39;</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="Slack.get_new_im_messages"><a class="viewcode-back" href="../../../api/utils/slack.html#qcodes.utils.slack.Slack.get_new_im_messages">[docs]</a>    <span class="k">def</span> <span class="nf">get_new_im_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -468,11 +479,11 @@
         <span class="n">new_messages</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">new_messages</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_new_im_messages</span><span class="p">()</span>
-        <span class="k">except</span> <span class="p">(</span><span class="n">ReadTimeout</span><span class="p">,</span> <span class="n">HTTPError</span><span class="p">,</span> <span class="n">ConnectTimeout</span><span class="p">,</span> <span class="n">ReadTimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">ReadTimeout</span><span class="p">,</span> <span class="n">HTTPError</span><span class="p">,</span> <span class="n">ConnectTimeout</span><span class="p">,</span> <span class="n">ReadTimeoutError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="c1"># catch any timeouts caused by network delays</span>
             <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;error retrieving slack messages&#39;</span><span class="p">,</span>
                           <span class="n">SlackTimeoutWarning</span><span class="p">)</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">ex</span><span class="p">)</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">handle_messages</span><span class="p">(</span><span class="n">new_messages</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Slack.help_message"><a class="viewcode-back" href="../../../api/utils/slack.html#qcodes.utils.slack.Slack.help_message">[docs]</a>    <span class="k">def</span> <span class="nf">help_message</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -499,7 +510,7 @@
                         <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="n">args</span><span class="si">}</span><span class="s1">&#39;</span>
                     <span class="k">if</span> <span class="n">kwargs</span><span class="p">:</span>
                         <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="n">kwargs</span><span class="si">}</span><span class="s1">&#39;</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">msg</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
 
                     <span class="n">func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">commands</span><span class="p">[</span><span class="n">command</span><span class="p">]</span>
                     <span class="k">try</span><span class="p">:</span>
@@ -516,16 +527,16 @@
                             <span class="n">results</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
                         <span class="k">if</span> <span class="n">results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span>
                                 <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Results: </span><span class="si">{</span><span class="n">results</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                                 <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
 
-                    <span class="k">except</span><span class="p">:</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span>
                             <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Error: </span><span class="si">{</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
                             <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span>
                         <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Command </span><span class="si">{}</span><span class="s1"> not understood. Try `help`&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                             <span class="n">command</span><span class="p">),</span>
                         <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span></div>
@@ -543,13 +554,13 @@
 <span class="sd">            None.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">command</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_commands</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span>
                 <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Added task &quot;</span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">,</span>
                 <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
             <span class="n">func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">task_commands</span><span class="p">[</span><span class="n">command</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span>
                 <span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Task command </span><span class="si">{</span><span class="n">command</span><span class="si">}</span><span class="s1"> not understood&#39;</span><span class="p">,</span>
                 <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span></div>
 
@@ -574,11 +585,11 @@
             <span class="c1"># Saves latest plot to filename</span>
             <span class="n">latest_plot</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">temp_filename</span><span class="p">)</span>
             <span class="c1"># Upload plot to slack</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">files</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">temp_filename</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">files_upload</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">temp_filename</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
             <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">temp_filename</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;No latest plot&#39;</span><span class="p">,</span>
-                                         <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;No latest plot&#39;</span><span class="p">,</span>
+                                        <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Slack.print_measurement_information"><a class="viewcode-back" href="../../../api/utils/slack.html#qcodes.utils.slack.Slack.print_measurement_information">[docs]</a>    <span class="k">def</span> <span class="nf">print_measurement_information</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -595,14 +606,14 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">active_data_set</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">dataset</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span>
                 <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Measurement is </span><span class="si">{:.0f}% c</span><span class="s1">omplete&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                     <span class="mi">100</span> <span class="o">*</span> <span class="n">dataset</span><span class="o">.</span><span class="n">fraction_complete</span><span class="p">()),</span>
                 <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span>
                 <span class="n">text</span><span class="o">=</span><span class="nb">repr</span><span class="p">(</span><span class="n">dataset</span><span class="p">),</span> <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span>
                 <span class="n">text</span><span class="o">=</span><span class="s1">&#39;No latest dataset found&#39;</span><span class="p">,</span>
                 <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span></div>
 
@@ -617,7 +628,7 @@
 <span class="sd">            bool: True if measurement is finished, False otherwise.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">active_loop</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">post_message</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slack</span><span class="o">.</span><span class="n">chat_postMessage</span><span class="p">(</span>
                 <span class="n">text</span><span class="o">=</span><span class="s1">&#39;Measurement complete&#39;</span><span class="p">,</span>
                 <span class="n">channel</span><span class="o">=</span><span class="n">channel</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">True</span>
