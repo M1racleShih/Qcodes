@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+49.g7d81cda96a
+                0.23.0+61.g80eb458b25
               </div>
             
           
@@ -518,7 +518,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/runner/.qcodes/logs/210308-7469-qcodes.log
+Qcodes Logfile : /home/runner/.qcodes/logs/210312-7365-qcodes.log
 </pre></div></div>
 </div>
 <p>If you want to sweep multiple parameters at once qcodes offers the combine function. You can combine any number of any kind paramter. We’ll use a ManualParameter for this example.</p>
@@ -583,9 +583,9 @@ Qcodes Logfile : /home/runner/.qcodes/logs/210308-7469-qcodes.log
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Started at 2021-03-08 13:54:20
+Started at 2021-03-12 08:48:03
 DataSet:
-   location = &#39;data/2021-03-08/#001_testsweep_13-54-19&#39;
+   location = &#39;data/2021-03-12/#001_testsweep_08-48-03&#39;
    &lt;Type&gt;   | &lt;array_id&gt;   | &lt;array.name&gt; | &lt;array.shape&gt;
    Setpoint | p1_set       | p1           | (11,)
    Setpoint | combined_set | combined     | (11, 2)
@@ -593,7 +593,7 @@ DataSet:
    Measured | p1           | p1           | (11, 2)
    Measured | p2           | p2           | (11, 2)
    Measured | p3           | p3           | (11, 2)
-Finished at 2021-03-08 13:54:20
+Finished at 2021-03-12 08:48:03
 </pre></div></div>
 </div>
 <p>The combined_set just stores the indices</p>
@@ -718,9 +718,9 @@ array([[1., 1.],
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Started at 2021-03-08 13:54:20
+Started at 2021-03-12 08:48:03
 DataSet:
-   location = &#39;data/2021-03-08/#002_testsweep_13-54-20&#39;
+   location = &#39;data/2021-03-12/#002_testsweep_08-48-03&#39;
    &lt;Type&gt;   | &lt;array_id&gt;   | &lt;array.name&gt; | &lt;array.shape&gt;
    Setpoint | p1_set       | p1           | (11,)
    Setpoint | combined_set | combined     | (11, 2)
@@ -728,7 +728,7 @@ DataSet:
    Measured | p1           | p1           | (11, 2)
    Measured | p2           | p2           | (11, 2)
    Measured | p3           | p3           | (11, 2)
-Finished at 2021-03-08 13:54:20
+Finished at 2021-03-12 08:48:03
 </pre></div></div>
 </div>
 <p>the combined_set now stores the aggregated values</p>
@@ -780,43 +780,43 @@ OrderedDict([(&#39;__class__&#39;, &#39;qcodes.instrument.parameter.CombinedPara
              (&#39;unit&#39;, &#39;a.u&#39;),
              (&#39;label&#39;, &#39;Sum&#39;),
              (&#39;full_name&#39;, &#39;combined&#39;),
-             (&#39;aggregator&#39;, &#39;&lt;function linear at 0x7fe17463c680&gt;&#39;),
+             (&#39;aggregator&#39;, &#39;&lt;function linear at 0x7f6855e6d0e0&gt;&#39;),
              (&#39;p1&#39;,
               {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.ManualParameter&#39;,
                &#39;full_name&#39;: &#39;p1&#39;,
                &#39;value&#39;: 2.0,
                &#39;raw_value&#39;: 2.0,
-               &#39;ts&#39;: &#39;2021-03-08 13:54:20&#39;,
-               &#39;unit&#39;: &#39;&#39;,
-               &#39;inter_delay&#39;: 0,
+               &#39;ts&#39;: &#39;2021-03-12 08:48:03&#39;,
                &#39;name&#39;: &#39;p1&#39;,
+               &#39;inter_delay&#39;: 0,
                &#39;post_delay&#39;: 0,
-               &#39;label&#39;: &#39;p1&#39;,
-               &#39;vals&#39;: &#39;&lt;Numbers -10&lt;=v&lt;=10&gt;&#39;}),
+               &#39;vals&#39;: &#39;&lt;Numbers -10&lt;=v&lt;=10&gt;&#39;,
+               &#39;unit&#39;: &#39;&#39;,
+               &#39;label&#39;: &#39;p1&#39;}),
              (&#39;p2&#39;,
               {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.ManualParameter&#39;,
                &#39;full_name&#39;: &#39;p2&#39;,
                &#39;value&#39;: 2.0,
                &#39;raw_value&#39;: 2.0,
-               &#39;ts&#39;: &#39;2021-03-08 13:54:20&#39;,
-               &#39;unit&#39;: &#39;&#39;,
-               &#39;inter_delay&#39;: 0,
+               &#39;ts&#39;: &#39;2021-03-12 08:48:03&#39;,
                &#39;name&#39;: &#39;p2&#39;,
+               &#39;inter_delay&#39;: 0,
                &#39;post_delay&#39;: 0,
-               &#39;label&#39;: &#39;p2&#39;,
-               &#39;vals&#39;: &#39;&lt;Numbers -10&lt;=v&lt;=10&gt;&#39;}),
+               &#39;vals&#39;: &#39;&lt;Numbers -10&lt;=v&lt;=10&gt;&#39;,
+               &#39;unit&#39;: &#39;&#39;,
+               &#39;label&#39;: &#39;p2&#39;}),
              (&#39;p3&#39;,
               {&#39;__class__&#39;: &#39;qcodes.instrument.parameter.ManualParameter&#39;,
                &#39;full_name&#39;: &#39;p3&#39;,
                &#39;value&#39;: 2.0,
                &#39;raw_value&#39;: 2.0,
-               &#39;ts&#39;: &#39;2021-03-08 13:54:20&#39;,
-               &#39;unit&#39;: &#39;&#39;,
-               &#39;inter_delay&#39;: 0,
+               &#39;ts&#39;: &#39;2021-03-12 08:48:03&#39;,
                &#39;name&#39;: &#39;p3&#39;,
+               &#39;inter_delay&#39;: 0,
                &#39;post_delay&#39;: 0,
-               &#39;label&#39;: &#39;p3&#39;,
-               &#39;vals&#39;: &#39;&lt;Numbers -10&lt;=v&lt;=10&gt;&#39;})])
+               &#39;vals&#39;: &#39;&lt;Numbers -10&lt;=v&lt;=10&gt;&#39;,
+               &#39;unit&#39;: &#39;&#39;,
+               &#39;label&#39;: &#39;p3&#39;})])
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
