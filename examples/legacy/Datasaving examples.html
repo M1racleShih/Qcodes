@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+92.ge6c89fac52
+                0.23.0+94.ge4e97b7212
               </div>
             
           
@@ -518,7 +518,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/runner/.qcodes/logs/210317-17083-qcodes.log
+Qcodes Logfile : /home/runner/.qcodes/logs/210317-17657-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -625,13 +625,13 @@ qcodes.data.gnuplot_format - DEBUG - Wrote to file from 0 to 10
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Started at 2021-03-17 09:48:32
+Started at 2021-03-17 10:23:58
 DataSet:
-   location = &#39;data/2021-03-17/#008_MockParabola_run_09-48-32&#39;
+   location = &#39;data/2021-03-17/#008_MockParabola_run_10-23-58&#39;
    &lt;Type&gt;   | &lt;array_id&gt;                   | &lt;array.name&gt;    | &lt;array.shape&gt;
    Setpoint | MockParabola_x_set           | x               | (10,)
    Measured | MockParabola_skewed_parabola | skewed_parabola | (10,)
-Finished at 2021-03-17 09:48:32
+Finished at 2021-03-17 10:23:58
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -663,14 +663,14 @@ qcodes.data.data_set - DEBUG - Finalising the DataSet. Writing.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Started at 2021-03-17 09:48:32
+Started at 2021-03-17 10:23:58
 DataSet:
-   location = &#39;data/2021-03-17/#009_MockParabola_run_09-48-32&#39;
+   location = &#39;data/2021-03-17/#009_MockParabola_run_10-23-58&#39;
    &lt;Type&gt;   | &lt;array_id&gt;                   | &lt;array.name&gt;    | &lt;array.shape&gt;
    Setpoint | MockParabola_x_set           | x               | (10,)
    Setpoint | MockParabola_y_set           | y               | (10, 15)
    Measured | MockParabola_skewed_parabola | skewed_parabola | (10, 15)
-Finished at 2021-03-17 09:48:32
+Finished at 2021-03-17 10:23:58
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -743,45 +743,11 @@ ok
 test_loop_writing_2D (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format) ... qcodes.instrument.base - DEBUG - [Loop_writing_test_2D(MockParabola)] Error getting or interpreting *IDN?: &#39;&#39;
 qcodes.data.data_set - DEBUG - Attempting to write
 qcodes.data.data_set - DEBUG - Finalising the DataSet. Writing.
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-Started at 2021-03-17 09:48:32
-DataSet:
-   location = &#39;/opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/tests/unittest_data/2021-03-17/#010_MockLoop_hdf5_test_09-48-32&#39;
-   &lt;Type&gt;   | &lt;array_id&gt;                        | &lt;array.name&gt;    | &lt;array.shape&gt;
-   Setpoint | Loop_writing_test_x_set           | x               | (10,)
-   Measured | Loop_writing_test_skewed_parabola | skewed_parabola | (10,)
-Finished at 2021-03-17 09:48:32
-Started at 2021-03-17 09:48:32
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
 ok
 test_metadata_write_read (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format)
 Test is based on the snapshot of the 1D dataset. ... ok
 test_partial_dataset (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format) ... ok
-test_read_writing_dicts_withlists_to_hdf5 (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format) ... ok
-test_reading_into_existing_data_array (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format) ... ok
-test_str_to_bool (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format) ... ok
-test_writing_metadata (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format) ... ok
-test_writing_unsupported_types_to_hdf5 (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format)
-Tests writing of ... root - WARNING - Type &#34;&lt;class &#39;qcodes.data.data_set.DataSet&#39;&gt;&#34; for &#34;nested_dataset&#34;:&#34;DataSet:
-   location = &#39;/opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/tests/unittest_data/2021-03-17/#017_test_missing_attr_09-48-32&#39;
-   &lt;Type&gt; | &lt;array_id&gt; | &lt;array.name&gt; | &lt;array.shape&gt;&#34; not supported, storing as string
-root - WARNING - List of type &#34;&lt;class &#39;qcodes.data.data_set.DataSet&#39;&gt;&#34; for &#34;list_of_dataset&#34;:&#34;[DataSet:
-   location = &#39;/opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/tests/unittest_data/2021-03-17/#017_test_missing_attr_09-48-32&#39;
-   &lt;Type&gt; | &lt;array_id&gt; | &lt;array.name&gt; | &lt;array.shape&gt;, DataSet:
-   location = &#39;/opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/tests/unittest_data/2021-03-17/#017_test_missing_attr_09-48-32&#39;
-   &lt;Type&gt; | &lt;array_id&gt; | &lt;array.name&gt; | &lt;array.shape&gt;]&#34; not supported, storing as string
+test_read_writing_dicts_withlists_to_hdf5 (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format) ...
 </pre></div></div>
 </div>
 <div class="nboutput docutils container">
@@ -789,13 +755,21 @@ root - WARNING - List of type &#34;&lt;class &#39;qcodes.data.data_set.DataSet&#
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+Started at 2021-03-17 10:23:58
 DataSet:
-   location = &#39;/opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/tests/unittest_data/2021-03-17/#011_MockLoop_hdf5_test_09-48-32&#39;
+   location = &#39;/opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/tests/unittest_data/2021-03-17/#010_MockLoop_hdf5_test_10-23-58&#39;
+   &lt;Type&gt;   | &lt;array_id&gt;                        | &lt;array.name&gt;    | &lt;array.shape&gt;
+   Setpoint | Loop_writing_test_x_set           | x               | (10,)
+   Measured | Loop_writing_test_skewed_parabola | skewed_parabola | (10,)
+Finished at 2021-03-17 10:23:59
+Started at 2021-03-17 10:23:59
+DataSet:
+   location = &#39;/opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/tests/unittest_data/2021-03-17/#011_MockLoop_hdf5_test_10-23-59&#39;
    &lt;Type&gt;   | &lt;array_id&gt;                           | &lt;array.name&gt;    | &lt;array.shape&gt;
    Setpoint | Loop_writing_test_2D_x_set           | x               | (10,)
    Setpoint | Loop_writing_test_2D_y_set           | y               | (10, 10)
    Measured | Loop_writing_test_2D_skewed_parabola | skewed_parabola | (10, 10)
-Finished at 2021-03-17 09:48:32
+Finished at 2021-03-17 10:23:59
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -804,9 +778,22 @@ Finished at 2021-03-17 09:48:32
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
 ok
+test_reading_into_existing_data_array (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format) ... ok
+test_str_to_bool (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format) ... ok
+test_writing_metadata (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format) ... ok
+test_writing_unsupported_types_to_hdf5 (qcodes.tests.legacy.test_hdf5formatter.TestHDF5_Format)
+Tests writing of ... root - WARNING - Type &#34;&lt;class &#39;qcodes.data.data_set.DataSet&#39;&gt;&#34; for &#34;nested_dataset&#34;:&#34;DataSet:
+   location = &#39;/opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/tests/unittest_data/2021-03-17/#017_test_missing_attr_10-23-59&#39;
+   &lt;Type&gt; | &lt;array_id&gt; | &lt;array.name&gt; | &lt;array.shape&gt;&#34; not supported, storing as string
+root - WARNING - List of type &#34;&lt;class &#39;qcodes.data.data_set.DataSet&#39;&gt;&#34; for &#34;list_of_dataset&#34;:&#34;[DataSet:
+   location = &#39;/opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/tests/unittest_data/2021-03-17/#017_test_missing_attr_10-23-59&#39;
+   &lt;Type&gt; | &lt;array_id&gt; | &lt;array.name&gt; | &lt;array.shape&gt;, DataSet:
+   location = &#39;/opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/tests/unittest_data/2021-03-17/#017_test_missing_attr_10-23-59&#39;
+   &lt;Type&gt; | &lt;array_id&gt; | &lt;array.name&gt; | &lt;array.shape&gt;]&#34; not supported, storing as string
+ok
 
 ----------------------------------------------------------------------
-Ran 18 tests in 0.513s
+Ran 18 tests in 0.358s
 
 OK
 </pre></div></div>
