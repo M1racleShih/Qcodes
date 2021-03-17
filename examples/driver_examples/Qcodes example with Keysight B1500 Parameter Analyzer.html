@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+88.g6204236578
+                0.23.0+90.g43e640a221
               </div>
             
           
@@ -716,7 +716,7 @@ Connected to: Agilent Technologies B1500A (serial:0, firmware:A.06.01.2016.0401)
 <div class="section" id="Identifying-and-selecting-installed-modules">
 <h3>Identifying and selecting installed modules<a class="headerlink" href="#Identifying-and-selecting-installed-modules" title="Permalink to this headline">¶</a></h3>
 <p>As mentioned above, the B1500 is a modular instrument, and contains multiple cards. When initializing the driver, the driver requests the installed modules from the B1500 and exposes them to the user via multiple ways.</p>
-<p>The first way to address a certain module is e.g. as follows:</p>
+<p>The first way to address a certain module is e.g. as follows:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1626,8 +1626,8 @@ Starting experimental run with id: 2329.
 </pre></div>
 </div>
 </div>
-<p>Here, the response message contains an error number and an error message. In some cases the error message may also contain the additional information such as the slot number. They are separated by a semicolon (;). For example, if the error 305 occurs on the slot 1, this method returns the following response. 305,”Excess current in HPSMU.; SLOT1”</p>
-<p>If no error occurred, this command returns 0,”No Error”.</p>
+<p>Here, the response message contains an error number and an error message. In some cases the error message may also contain the additional information such as the slot number. They are separated by a semicolon (;). For example, if the error 305 occurs on the slot 1, this method returns the following response. 305,“Excess current in HPSMU.; SLOT1”</p>
+<p>If no error occurred, this command returns 0,“No Error”.</p>
 </div>
 <div class="section" id="Low-Level-Interface">
 <h2>Low Level Interface<a class="headerlink" href="#Low-Level-Interface" title="Permalink to this headline">¶</a></h2>

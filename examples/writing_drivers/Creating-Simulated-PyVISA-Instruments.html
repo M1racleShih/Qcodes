@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+88.g6204236578
+                0.23.0+90.g43e640a221
               </div>
             
           
@@ -117,7 +117,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#Example:-Weinschel_8320">Example: Weinschel_8320</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Congratulations!-That-was-it.">Congratulations! That was it.</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Bonus-example:-including-parameters-in-the-simulated-instrument">Bonus example: including parameters in the simulated instrument</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#That's-it!">That’s it!</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#That’s-it!">That’s it!</a></li>
 </ul>
 </li>
 </ul>
@@ -493,7 +493,7 @@ alt="Binder badge"
 </div><div class="section" id="Creating-Simulated-PyVISA-Instruments">
 <h1>Creating Simulated PyVISA Instruments<a class="headerlink" href="#Creating-Simulated-PyVISA-Instruments" title="Permalink to this headline">¶</a></h1>
 <p>When developing stuff in a large codebase like QCoDeS, it is often uncanningly easy to submit a change that breaks stuff. Therefore, <em>continuous integration</em> is performed in the form of automated tests that run before new code is allowed into the codebase. The many tests of QCoDeS can be found in <code class="docutils literal notranslate"><span class="pre">qcodes.tests</span></code>.</p>
-<p>But how about drivers? They constitute the majority of the codebase, but how can we test them? Wouldn’t that require a physical copy each instrument to be present on the California server where we run our tests? It used to be so, but not anymore! For drivers utilising PyVISA (i.e. <code class="docutils literal notranslate"><span class="pre">VisaInstrument</span></code> drivers), we may create simulated instruments to which the drivers may connect.</p>
+<p>But how about drivers? They constitute the majority of the codebase, but how can we test them? Wouldn’t that require a physical copy each instrument to be present on the California server where we run our tests? It used to be so, but not anymore! For drivers utilising PyVISA (i.e. <code class="docutils literal notranslate"><span class="pre">VisaInstrument</span></code> drivers), we may create simulated instruments to which the drivers may connect.</p>
 <div class="section" id="What?">
 <h2>What?<a class="headerlink" href="#What?" title="Permalink to this headline">¶</a></h2>
 <p>This way, we may instantiate drivers and run simple tests on them. Tests like:</p>
@@ -658,7 +658,7 @@ Connected to: QCoDeS Weinschel 8320 (Simulated) (serial:1337, firmware:0.0.01) i
 </div>
 <div class="section" id="Bonus-example:-including-parameters-in-the-simulated-instrument">
 <h2>Bonus example: including parameters in the simulated instrument<a class="headerlink" href="#Bonus-example:-including-parameters-in-the-simulated-instrument" title="Permalink to this headline">¶</a></h2>
-<p>It is also possible to add queriable parameters to the <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file, but testing that you can read those back is of limited value. You should only add them if your driver needs them to instantiate, e.g. if it checks that some range or impedance is configured correctly on startup, or - more generally - if a part of your driver code that you’d like to test needs it to run.</p>
+<p>It is also possible to add queriable parameters to the <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file, but testing that you can read those back is of limited value. You should only add them if your driver needs them to instantiate, e.g. if it checks that some range or impedance is configured correctly on startup, or - more generally - if a part of your driver code that you’d like to test needs it to run.</p>
 <p>For the sake of this example, let us add a test that the driver’s parameter’s validator will reject an attenuation of less than 0 dBm. Note that this concrete test is redundant, since we have separate tests for validators. It is, however, an excellent example to learn from.</p>
 <p>First we update the <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> file to contain a property matching the parameter.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spec: &quot;1.0&quot;
@@ -749,8 +749,8 @@ resources:
 </pre></div>
 </div>
 </div>
-<div class="section" id="That's-it!">
-<h2>That’s it!<a class="headerlink" href="#That's-it!" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="That’s-it!">
+<h2>That’s it!<a class="headerlink" href="#That’s-it!" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

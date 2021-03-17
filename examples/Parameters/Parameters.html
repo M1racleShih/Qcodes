@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+88.g6204236578
+                0.23.0+90.g43e640a221
               </div>
             
           
@@ -515,19 +515,28 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/runner/.qcodes/logs/210316-5477-qcodes.log
+Qcodes Logfile : /home/runner/.qcodes/logs/210317-7832-qcodes.log
 </pre></div></div>
 </div>
 <p>QCoDeS provides the following classes of built-in parameters:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Parameter</span></code> represents a single value at a time</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Parameter</span></code> represents a single value at a time</p>
+<ul>
 <li><p>Example: voltage</p></li>
+</ul>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ParameterWithSetpoints</span></code> is intended for array-values parameters. This Parameter class is intended for anything where a call to the instrument returns an array of values. <a class="reference internal" href="Simple-Example-of-ParameterWithSetpoints.html"><span class="doc">This notebook</span></a> gives more detailed examples of how this parameter can be used.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ArrayParameter</span></code> represents an array of values of all the same type that are returned all at once.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ArrayParameter</span></code> represents an array of values of all the same type that are returned all at once.</p>
+<ul>
 <li><p>Example: voltage vs time waveform</p></li>
 <li><p><strong>NOTE:</strong> This is an older base class for array-valued parameters. For any new driver we strongly recommend using <code class="docutils literal notranslate"><span class="pre">ParameterWithSetpoints</span></code> class which is both more flexible and significantly easier to use. Refer to notebook on <a class="reference internal" href="Simple-Example-of-ParameterWithSetpoints.html"><span class="doc">writing drivers with ParameterWithSetpoints</span></a></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">MultiParameter</span></code> represents a collection of values with different meaning and possibly different dimension</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MultiParameter</span></code> represents a collection of values with different meaning and possibly different dimension</p>
+<ul>
 <li><p>Example: I and Q, or I vs time and Q vs time</p></li>
+</ul>
+</li>
 </ul>
 <p>Parameters are described in detail in the <a class="reference internal" href="../writing_drivers/Creating-Instrument-Drivers.html"><span class="doc">Creating Instrument Drivers</span></a> tutorial.</p>
 <div class="section" id="Parameter">

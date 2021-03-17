@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+88.g6204236578
+                0.23.0+90.g43e640a221
               </div>
             
           
@@ -1098,8 +1098,8 @@ The current value is withing the present current_range
 Exception is correctly raised. The value is out of the present range of 0.01 A.
 </pre></div></div>
 </div>
-<p>auto_range can be used to set the value even if the value is out of the present range. If the value exceeds the present range, the range automatically switches to the higher range tier untill the maximum allowed limit is reached (0.2 A for current and 30 V for voltage). auto_range can be useful when one wants to ramp the value without worrying about the end value to be out of the present range. We ramp the current from 0.009 A to 0.02 A with the step of 0.001 A (delay between each step is set
-to 1 second) and time it. Our present range is 0.01 A, so we expect the range automatically switches to 0.1 A because of auto_range is True.</p>
+<p>auto_range can be used to set the value even if the value is out of the present range. If the value exceeds the present range, the range automatically switches to the higher range tier untill the maximum allowed limit is reached (0.2 A for current and 30 V for voltage). auto_range can be useful when one wants to ramp the value without worrying about the end value to be out of the present range. We ramp the current from 0.009 A to 0.02 A with the step of 0.001 A (delay between each step is set to
+1 second) and time it. Our present range is 0.01 A, so we expect the range automatically switches to 0.1 A because of auto_range is True.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>

@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+88.g6204236578
+                0.23.0+90.g43e640a221
               </div>
             
           
@@ -569,7 +569,7 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/runner/.qcodes/logs/210316-6662-qcodes.log
+Qcodes Logfile : /home/runner/.qcodes/logs/210317-13291-qcodes.log
 </pre></div></div>
 </div>
 <div class="nbinput docutils container">
@@ -619,7 +619,7 @@ Connected to: AGILENT TECHNOLOGIES B2200A (serial:0, firmware:A.01.00) in 0.05s
 </div>
 <div class="output_area docutils container">
 <p><strong>Note: using simulated instrument.</strong></p>
-<p>Due to limitations in pyvisa-sim the behavior will be different. Especially - the default values are not recovered when calling <code class="docutils literal notranslate"><span class="pre">switch_matrix.reset()</span></code> method - commands will simply overwrite the current state (e.g. when calling <code class="docutils literal notranslate"><span class="pre">switch_matrix.gnd_enabled_inputs([3,</span> <span class="pre">4])</span></code> and after that <code class="docutils literal notranslate"><span class="pre">switch_matrix.gnd_enabled_inputs([5,</span> <span class="pre">6])</span></code>, the real instrument would return <code class="docutils literal notranslate"><span class="pre">[3,4,5,6]</span></code> when calling <code class="docutils literal notranslate"><span class="pre">switch_matrix.gnd_enabled_inputs()</span></code>, but the simulated instrument will only return <code class="docutils literal notranslate"><span class="pre">[5,6]</span></code>)</p>
+<p>Due to limitations in pyvisa-sim the behavior will be different. Especially - the default values are not recovered when calling <code class="docutils literal notranslate"><span class="pre">switch_matrix.reset()</span></code> method - commands will simply overwrite the current state (e.g. when calling <code class="docutils literal notranslate"><span class="pre">switch_matrix.gnd_enabled_inputs([3,</span> <span class="pre">4])</span></code> and after that <code class="docutils literal notranslate"><span class="pre">switch_matrix.gnd_enabled_inputs([5,</span> <span class="pre">6])</span></code>, the real instrument would return <code class="docutils literal notranslate"><span class="pre">[3,4,5,6]</span></code> when calling <code class="docutils literal notranslate"><span class="pre">switch_matrix.gnd_enabled_inputs()</span></code>, but the simulated instrument will only return <code class="docutils literal notranslate"><span class="pre">[5,6]</span></code>)</p>
 </div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -689,7 +689,7 @@ Connected to: AGILENT TECHNOLOGIES B2200A (serial:0, firmware:A.01.00) in 0.05s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,778 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,386 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -718,7 +718,7 @@ Connected to: AGILENT TECHNOLOGIES B2200A (serial:0, firmware:A.01.00) in 0.05s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,787 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,396 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -768,7 +768,7 @@ Connected to: AGILENT TECHNOLOGIES B2200A (serial:0, firmware:A.01.00) in 0.05s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,804 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,415 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
 </pre></div></div>
@@ -798,7 +798,7 @@ Connected to: AGILENT TECHNOLOGIES B2200A (serial:0, firmware:A.01.00) in 0.05s
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,813 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,427 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
 </pre></div></div>
@@ -818,7 +818,7 @@ Connected to: AGILENT TECHNOLOGIES B2200A (serial:0, firmware:A.01.00) in 0.05s
 <h3>Connection Rule<a class="headerlink" href="#Connection-Rule" title="Permalink to this headline">¶</a></h3>
 <p>The Switch matrix has two <em>connection rules</em>: - in <em>free route</em> mode (<strong>Default</strong> after reset): - each input port can be connected to multiple output ports - and each output port can be connected to multiple input ports. - <strong>Caution: If the Free connection rule has been specified, ensure multiple input ports are not connected to the same output port. Such configurations can cause damage</strong> - in <em>single route</em> mode: - each input port can be connected to only one output port - and each output port
 can be connected to only one input port. - existing connection to a port will be disconnected when a new connection is made.</p>
-<p><strong>Note: when switching from *free* to *single* mode, 1-to-multiple connections will not be changed until the connection is changed!!</strong></p>
+<p><strong>Note: when switching from free to single mode, 1-to-multiple connections will not be changed until the connection is changed!!</strong></p>
 <div class="section" id="Free-Route-Mode">
 <h4>Free Route Mode<a class="headerlink" href="#Free-Route-Mode" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput docutils container">
@@ -856,7 +856,7 @@ can be connected to only one input port. - existing connection to a port will be
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,828 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,445 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -885,7 +885,7 @@ can be connected to only one input port. - existing connection to a port will be
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,837 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,454 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -958,7 +958,7 @@ Skipped `Connecting multiple inputs to the same output` example.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,856 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/instrument_drivers/Keysight/keysight_b220x.py:339: UserWarning: When going from *free* to *single* mode existing connections are not released.
+2021-03-17 09:20:27,476 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/qcodes/instrument_drivers/Keysight/keysight_b220x.py:339: UserWarning: When going from *free* to *single* mode existing connections are not released.
   warnings.warn(&#39;When going from *free* to *single* mode existing &#39;
 
 </pre></div></div>
@@ -994,10 +994,10 @@ Skipped `Connecting multiple inputs to the same output` example.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,866 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,487 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   after removing the cwd from sys.path.
 
-2021-03-16 07:40:13,868 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:9: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,490 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:9: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   if __name__ == &#39;__main__&#39;:
 
 </pre></div></div>
@@ -1012,7 +1012,7 @@ Skipped `Connecting multiple inputs to the same output` example.
 {(2, 48), (10, 12)}
 </pre></div></div>
 </div>
-<p><strong>Note that even though a connection like {2-&gt;33, 2-&gt;12} or {5-&gt;14, 6-&gt;14} would be impossible to *create* in *Single Route* Mode it can still exist if it was created previously in *Free Route* mode!</strong></p>
+<p><strong>Note that even though a connection like {2-&gt;33, 2-&gt;12} or {5-&gt;14, 6-&gt;14} would be impossible to create in Single Route Mode it can still exist if it was created previously in Free Route mode!</strong></p>
 <p>The reason is if the connection was made in <em>Free Route</em> mode and after that <em>Single Route</em> was activated the connections will <strong>persist</strong>. The following example illustrates this:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
@@ -1042,16 +1042,16 @@ Skipped `Connecting multiple inputs to the same output` example.
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,878 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:5: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,502 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:5: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;
 
-2021-03-16 07:40:13,880 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,504 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
-2021-03-16 07:40:13,881 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:7: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,506 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:7: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   import sys
 
-2021-03-16 07:40:13,884 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:14: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,510 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:14: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
 </pre></div></div>
@@ -1112,7 +1112,7 @@ Connection Sequence after Reset:  bbm
 <p>The Switch Matrix can automatically connect unused inputs and/or outputs to a designated Ground input. When the ground mode is <em>ON</em>, the input ground port is connected to - to <em>ground enabled</em> output ports that are not connected to any other input ports. - all inputs that are specified as <em>unused</em></p>
 <p><strong>Note: Connection sequence (to connect input ground port to output ports) is always Break-Before-Make.</strong></p>
 <p>In principle the Ground Input Port can be chosen freely, however it is advisable to use the default ground input (AUX 12) as I will explain below.</p>
-<p><strong>Note: The port that is selected as *Ground Input Port* cannot be used in normal ``connect``/``disconnect`` commands</strong></p>
+<p><strong>Note: The port that is selected as Ground Input Port cannot be used in normal ``connect``/``disconnect`` commands</strong></p>
 <p><strong>Note: Ground mode cannot be set to ON when the bias mode is ON</strong></p>
 <p>To make use of the Ground mode several things have to be done: - specify which <em>outputs</em> should be <em>ground enabled</em> - specify which <em>inputs</em> will be unused and should be <em>ground enabled</em> - (most often not necessary (see above)) specify which input port should be the ground input - Set Ground mode <em>ON</em></p>
 <p>The following will explain these steps</p>
@@ -1138,10 +1138,10 @@ Connection Sequence after Reset:  bbm
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,903 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,534 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
-2021-03-16 07:40:13,905 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,536 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
 </pre></div></div>
@@ -1311,7 +1311,7 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,962 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,605 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -1376,10 +1376,10 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,983 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,630 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:2: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
-2021-03-16 07:40:13,984 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,631 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
 </pre></div></div>
@@ -1424,7 +1424,7 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:13,999 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,650 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -1454,7 +1454,7 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:14,008 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,660 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -1485,7 +1485,7 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:14,016 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,670 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
 </pre></div></div>
@@ -1504,7 +1504,7 @@ Before executing this make sure that there is no source connected to input 13 as
 <div class="section" id="Bias-Mode">
 <h3>Bias Mode<a class="headerlink" href="#Bias-Mode" title="Permalink to this headline">¶</a></h3>
 <p>The Bias Mode is very similar to the previously described Ground Mode, so make sure to read the Ground Mode description above.</p>
-<p>The main difference to Ground Mode is that - instead of connecting ports to GND potential, in Bias Mode unused Outputs are connected to a Bias Potential which is supplied to the designated <em>Bias Input Port</em>. - The <strong>default *Bias input Port* is AUX 10</strong> - <strong>By default all output ports are *Bias enabled*</strong></p>
+<p>The main difference to Ground Mode is that - instead of connecting ports to GND potential, in Bias Mode unused Outputs are connected to a Bias Potential which is supplied to the designated <em>Bias Input Port</em>. - The <strong>default Bias input Port is AUX 10</strong> - <strong>By default all output ports are Bias enabled</strong></p>
 <p>Other differences compared to GND mode are:</p>
 <ul class="simple">
 <li><p>Bias Mode <strong>always requires an external source</strong> to supply the Bias potential (there is no internal circuitry)</p></li>
@@ -1558,10 +1558,10 @@ Before executing this make sure that there is no source connected to input 13 as
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:14,032 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,688 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
-2021-03-16 07:40:14,034 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,691 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   after removing the cwd from sys.path.
 
 </pre></div></div>
@@ -1627,7 +1627,7 @@ False
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:14,057 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,716 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -1660,7 +1660,7 @@ False
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:14,066 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,726 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:1: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   &#34;&#34;&#34;Entry point for launching an IPython kernel.
 
 </pre></div></div>
@@ -1704,26 +1704,10 @@ False
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:14,075 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,736 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:4: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   after removing the cwd from sys.path.
 
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-1, Command error
-False
-</pre></div></div>
-</div>
-<div class="nboutput docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-2021-03-16 07:40:14,078 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:12: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,739 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:12: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   if sys.path[0] == &#39;&#39;:
 
 </pre></div></div>
@@ -1733,6 +1717,8 @@ False
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
+1, Command error
+False
 1, Command error
 False
 </pre></div></div>
@@ -1745,7 +1731,7 @@ False
 <p>In <em>Couple Mode</em>, pairs of input ports can be treated as one port. This is especially handy for Kelvin Measurement setups (=&gt; <em>Force</em> and <em>Sense</em> lines), where you connect/disconnect <em>Force</em> and <em>Sense</em> at the same time from one output to the next.</p>
 <p>Couple mode will group subsequent channel numbers in pairs of two:</p>
 <p><code class="docutils literal notranslate"><span class="pre">{(1,2),</span> <span class="pre">(3,4),</span> <span class="pre">(5,6),</span> <span class="pre">(7,8),</span> <span class="pre">(9,10),</span> <span class="pre">(11,12),</span> <span class="pre">(12,13)}</span></code></p>
-<p>When making the connections always keep these rule in mind: - <strong>Odd</strong> <em>Input Ports</em> always connect to an <strong>odd</strong> <em>Output port</em>. - e.g. Input <code class="docutils literal notranslate"><span class="pre">3</span></code> will connect to <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, or <code class="docutils literal notranslate"><span class="pre">17</span></code> and so on - Input <code class="docutils literal notranslate"><span class="pre">3</span></code> will never connect to <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">6</span></code>, <code class="docutils literal notranslate"><span class="pre">24</span></code> and so on - <strong>Even</strong> <em>Input Ports</em> always connect to an <strong>even</strong> <em>Output port</em>. - e.g. Input <code class="docutils literal notranslate"><span class="pre">6</span></code> will connect to <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">6</span></code>, or <code class="docutils literal notranslate"><span class="pre">34</span></code> - Input <code class="docutils literal notranslate"><span class="pre">6</span></code> will never connect to <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">21</span></code> - In a pair the <strong>odd</strong> port is always the lower
+<p>When making the connections always keep these rule in mind: - <strong>Odd</strong> <em>Input Ports</em> always connect to an <strong>odd</strong> <em>Output port</em>. - e.g. Input <code class="docutils literal notranslate"><span class="pre">3</span></code> will connect to <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, or <code class="docutils literal notranslate"><span class="pre">17</span></code> and so on - Input <code class="docutils literal notranslate"><span class="pre">3</span></code> will never connect to <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">6</span></code>, <code class="docutils literal notranslate"><span class="pre">24</span></code> and so on - <strong>Even</strong> <em>Input Ports</em> always connect to an <strong>even</strong> <em>Output port</em>. - e.g. Input <code class="docutils literal notranslate"><span class="pre">6</span></code> will connect to <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">6</span></code>, or <code class="docutils literal notranslate"><span class="pre">34</span></code> - Input <code class="docutils literal notranslate"><span class="pre">6</span></code> will never connect to <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">9</span></code>, <code class="docutils literal notranslate"><span class="pre">21</span></code> - In a pair the <strong>odd</strong> port is always the lower
 port number. - When <code class="docutils literal notranslate"><span class="pre">(7,8)</span></code> are coupled and sending the command <code class="docutils literal notranslate"><span class="pre">switch_matrix.connect(7,</span> <span class="pre">24)</span></code> the switch matrix - will make the following connection: <code class="docutils literal notranslate"><span class="pre">7-&gt;23</span></code>, <code class="docutils literal notranslate"><span class="pre">8-&gt;24</span></code> - It will <strong>NOT</strong> make <code class="docutils literal notranslate"><span class="pre">7-&gt;24</span></code>, <code class="docutils literal notranslate"><span class="pre">8-&gt;25</span></code> or <code class="docutils literal notranslate"><span class="pre">7-&gt;24</span></code>, <code class="docutils literal notranslate"><span class="pre">8-&gt;23</span></code> or</p>
 <p>Because of the above rules it us usually easiest if you always work with the <strong>lower, odd number</strong> in the commands. So for pair <code class="docutils literal notranslate"><span class="pre">(3,4)</span></code> use <code class="docutils literal notranslate"><span class="pre">3</span></code> in the commands.</p>
 <p><strong>Note: There are some limitations on using couple mode together with either Bias or GND mode. Refer to the manual for further information.</strong></p>
@@ -1819,10 +1805,10 @@ after:  [1, 3, 5]
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:14,104 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,769 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
-2021-03-16 07:40:14,106 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,771 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
 </pre></div></div>
@@ -1857,10 +1843,10 @@ after disconnecting:  {(2, 48), (10, 12)}
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-2021-03-16 07:40:14,115 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,783 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
   This is separate from the ipykernel package so we can avoid doing imports until
 
-2021-03-16 07:40:14,117 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
+2021-03-17 09:20:27,785 ¦ py.warnings ¦ WARNING ¦ warnings ¦ _showwarnmsg ¦ 110 ¦ /opt/hostedtoolcache/Python/3.7.10/x64/lib/python3.7/site-packages/ipykernel_launcher.py:6: UserWarning: Instrument status byte indicates an error occured (value of STB was: 32)! Use `get_error` method to poll error message.
 
 
 </pre></div></div>

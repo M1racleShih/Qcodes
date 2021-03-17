@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+88.g6204236578
+                0.23.0+90.g43e640a221
               </div>
             
           
@@ -152,7 +152,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#Table-of-contents">Table of contents</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Imports-and-initialisation">Imports and initialisation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#SENDING-WAVEFORMS">SENDING WAVEFORMS</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Running-the-AWG-in-&quot;lazy&quot;-mode">Running the AWG in “lazy” mode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Running-the-AWG-in-“lazy”-mode">Running the AWG in “lazy” mode</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="Qcodes%20example%20with%20Tektronix%20AWG70002A.html">QCoDeS Example with Tektronix AWG70002A</a></li>
@@ -540,9 +540,12 @@ alt="Binder badge"
 <h2>Table of contents<a class="headerlink" href="#Table-of-contents" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="#init">Imports and initialisation</a></p></li>
-<li><p><a class="reference external" href="#sending">Sending waveforms</a></p></li>
+<li><p><a class="reference external" href="#sending">Sending waveforms</a></p>
+<ul>
 <li><p><a class="reference external" href="#viaawg">Via an .awg-file</a></p></li>
 <li><p><a class="reference external" href="#tolist">Sending directly to list</a></p></li>
+</ul>
+</li>
 <li><p><a class="reference external" href="#lazy">Running in “lazy” mode</a></p></li>
 </ul>
 </div>
@@ -803,8 +806,8 @@ alt="Binder badge"
 </div>
 </div>
 </div>
-<div class="section" id="Running-the-AWG-in-&quot;lazy&quot;-mode">
-<h2>Running the AWG in “lazy” mode<a class="headerlink" href="#Running-the-AWG-in-"lazy"-mode" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="Running-the-AWG-in-“lazy”-mode">
+<h2>Running the AWG in “lazy” mode<a class="headerlink" href="#Running-the-AWG-in-“lazy”-mode" title="Permalink to this headline">¶</a></h2>
 <p>In “lazy” mode, the AWG continuously outputs a specific sequence element until the user forces a jump to another element (as opposed to running through the sequence in a particular predefined order). On the hardware side, this is still done by running the AWG in <code class="docutils literal notranslate"><span class="pre">sequence</span></code> mode, but with all sequence elements having their sequencer options set to infinite repetitions.</p>
 <p>Below we assume that the above awg file has been loaded into the sequencer.</p>
 <p>The parameter controlling the sequence element currently being run is called <code class="docutils literal notranslate"><span class="pre">sequence_pos</span></code>. Note that this is also accesible in non-lazy mode, although in that mode its return value quickly becomes obsolete.</p>

@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+88.g6204236578
+                0.23.0+90.g43e640a221
               </div>
             
           
@@ -590,21 +590,31 @@ Connected to: Keysight Technologies 34465A (serial:MY54505281, firmware:A.03.00-
 <p>Here is an overview (not exhaustive) of the parameters and methods that are available in the driver.</p>
 <p>The driver is not only comprised of root-level parameters and methods but also contains submodules which logically group some functionality.</p>
 <ul class="simple">
-<li><p>Measurements</p></li>
+<li><p>Measurements</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.init_measurement()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.fetch()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.read()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.volt</span></code> - immediately measure one (the present) voltage value</p></li>
-<li><p>Time trace measurements</p></li>
+</ul>
+</li>
+<li><p>Time trace measurements</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.timetrace</span></code> - covered in more detail below</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.time_axis</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.timetrace_dt</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.timetrace_npts</span></code></p></li>
-<li><p>Range settings</p></li>
+</ul>
+</li>
+<li><p>Range settings</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.range</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.autorange</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.autorange_once()</span></code></p></li>
-<li><p>Triggering</p></li>
+</ul>
+</li>
+<li><p>Triggering</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.trigger.source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.trigger.delay</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.trigger.auto_delay_enabled</span></code></p></li>
@@ -612,24 +622,38 @@ Connected to: Keysight Technologies 34465A (serial:MY54505281, firmware:A.03.00-
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.trigger.slope</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.trigger.level</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.trigger.force()</span></code></p></li>
-<li><p>Sample settings</p></li>
+</ul>
+</li>
+<li><p>Sample settings</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.sample.count</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.sample.source</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.sample.timer</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.sample.pretrigger_count</span></code></p></li>
-<li><p>Display control</p></li>
+</ul>
+</li>
+<li><p>Display control</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.display.text</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.display.clear()</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.display.enabled</span></code></p></li>
-<li><p>Measurement type</p></li>
+</ul>
+</li>
+<li><p>Measurement type</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.sense_function</span></code></p></li>
-<li><p>Measurement accuracy (NB: DC Voltage mode only)</p></li>
+</ul>
+</li>
+<li><p>Measurement accuracy (NB: DC Voltage mode only)</p>
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.NPLC</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.resolution</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.line_frequency</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.aperture_mode</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.aperture_time</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dmm.autozero</span></code></p></li>
+</ul>
+</li>
 </ul>
 <p>As an extra, let’s print the readable snapshot of the instrument.</p>
 <div class="nbinput docutils container">
@@ -861,7 +885,7 @@ Starting experimental run with id: 381
 </div>
 <p>The instrument is going to measure 15 samples and save them to its memory. Once the measurement is completed, we can call <code class="docutils literal notranslate"><span class="pre">fetch</span></code> method of the driver to retreive the acquired data.</p>
 <p>While the measurement is going, there are two things we can do. One is to <code class="docutils literal notranslate"><span class="pre">sleep</span></code> until the end of the measurement, and then call <code class="docutils literal notranslate"><span class="pre">fetch</span></code>. The other one is to call <code class="docutils literal notranslate"><span class="pre">fetch</span></code> immediately after the measurement has been initiated - this way the instrument will return the acquired data right when the measurement is finished. This sounds pretty useful, however there are two considerations to keep in mind: the instrument manual hints that calling fetching immediately after initiation may be slower
-than waiting for the measurement to complete; if the measurement takes longer than the VISA command timeout, the code may raise a VISA timeout exception while the measurement is properly running (e.g. waiting for a trigger). To overcome the latter problem, one can temporarily change the VISA timeout value during the data fetching:</p>
+than waiting for the measurement to complete; if the measurement takes longer than the VISA command timeout, the code may raise a VISA timeout exception while the measurement is properly running (e.g. waiting for a trigger). To overcome the latter problem, one can temporarily change the VISA timeout value during the data fetching:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_timeout</span> <span class="o">=</span> <span class="n">old_timeout</span> <span class="o">+</span> <span class="n">n_samples</span> <span class="o">*</span> <span class="n">time_per_sample</span>
 <span class="c1"># where, n_samples == dmm.sample.count(),</span>
 <span class="c1"># and time_per_sample == dmm.sample.timer()</span>

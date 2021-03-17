@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+88.g6204236578
+                0.23.0+90.g43e640a221
               </div>
             
           
@@ -563,16 +563,16 @@ Output logging : True
 Raw input log  : False
 Timestamping   : True
 State          : active
-Qcodes Logfile : /home/runner/.qcodes/logs/210316-7860-qcodes.log
+Qcodes Logfile : /home/runner/.qcodes/logs/210317-17891-qcodes.log
 Upgrading database; v0 -&gt; v1: : 0it [00:00, ?it/s]
-Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 1042.84it/s]
+Upgrading database; v1 -&gt; v2: 100%|██████████| 1/1 [00:00&lt;00:00, 1042.32it/s]
 Upgrading database; v2 -&gt; v3: : 0it [00:00, ?it/s]
 Upgrading database; v3 -&gt; v4: : 0it [00:00, ?it/s]
-Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 433.47it/s]
+Upgrading database; v4 -&gt; v5: 100%|██████████| 1/1 [00:00&lt;00:00, 388.76it/s]
 Upgrading database; v5 -&gt; v6: : 0it [00:00, ?it/s]
-Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 493.74it/s]
-Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 463.77it/s]
-Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 546.99it/s]
+Upgrading database; v6 -&gt; v7: 100%|██████████| 1/1 [00:00&lt;00:00, 272.85it/s]
+Upgrading database; v7 -&gt; v8: 100%|██████████| 1/1 [00:00&lt;00:00, 360.83it/s]
+Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00&lt;00:00, 440.72it/s]
 </pre></div></div>
 </div>
 <div class="section" id="Exampe-1:-outliers-in-homogeneous-data">
@@ -627,7 +627,7 @@ Upgrading database; v8 -&gt; v9: 100%|██████████| 1/1 [00:00
 <p>and the actual structure of the data becomes visible.</p>
 <p>Please note two further details: - The triangles that appeared at the top and the bottom of the color bar: These indicate that the color bar does not cover the full range of the data spectrum. - The clipped regions are marked with colors that are clearly not part of the color scale in order to clearly separate those regions where we cannot make any claim about any structure.</p>
 <p>## Details of the calculation</p>
-<p>The new limits are calculated in three steps: - Determine the inter quartile range (IQR), i.e. the distance between the first (q1) and the third (q3) quartile (see image below). - Expand the region spanned by [q1, q3] by 1.5 x the IQR (yet not beyond the original limits of the min/max of the data). - Limit the amount of data points clipped on each side to an amount that is described by the lower (pl) and upper (pu) cutoff percentiles. E.g. for pu=pl=0.5%, no more the white and gray areas may not
+<p>The new limits are calculated in three steps: - Determine the inter quartile range (IQR), i.e. the distance between the first (q1) and the third (q3) quartile (see image below). - Expand the region spanned by [q1, q3] by 1.5 x the IQR (yet not beyond the original limits of the min/max of the data). - Limit the amount of data points clipped on each side to an amount that is described by the lower (pl) and upper (pu) cutoff percentiles. E.g. for pu=pl=0.5%, no more the white and gray areas may not
 take up more than half a percent each of the total area.</p>
 <p>To understand how this works lets consider the histogram of the previous example:</p>
 <div class="nbinput docutils container">
@@ -658,7 +658,7 @@ take up more than half a percent each of the total area.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.lines.Line2D at 0x7fb7dd49df50&gt;
+&lt;matplotlib.lines.Line2D at 0x7f7b0a1ce5d0&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
@@ -752,7 +752,7 @@ increase of the steepness of color gradient.</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-&lt;matplotlib.lines.Line2D at 0x7fb7dcafe610&gt;
+&lt;matplotlib.lines.Line2D at 0x7f7b0982b090&gt;
 </pre></div></div>
 </div>
 <div class="nboutput nblast docutils container">
