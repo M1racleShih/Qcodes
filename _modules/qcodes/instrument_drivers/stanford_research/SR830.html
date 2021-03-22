@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.23.0+100.gdeb79e3849
+                0.23.0+109.g433c6a8bd2
               </div>
             
           
@@ -175,6 +175,7 @@
 <span class="kn">from</span> <span class="nn">qcodes.utils.validators</span> <span class="kn">import</span> <span class="n">Numbers</span><span class="p">,</span> <span class="n">Ints</span><span class="p">,</span> <span class="n">Enum</span><span class="p">,</span> <span class="n">Strings</span>
 
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 
 <div class="viewcode-block" id="ChannelBuffer"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.stanford_research.html#qcodes.instrument_drivers.stanford_research.SR830.ChannelBuffer">[docs]</a><span class="k">class</span> <span class="nc">ChannelBuffer</span><span class="p">(</span><span class="n">ArrayParameter</span><span class="p">):</span>
@@ -653,7 +654,7 @@
             <span class="s1">&#39;r&#39;</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span>
             <span class="s1">&#39;p&#39;</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span>
         <span class="s1">&#39;phase&#39;</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span>
-           <span class="s1">&#39;θ&#39;</span> <span class="p">:</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;θ&#39;</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span>
          <span class="s1">&#39;aux1&#39;</span><span class="p">:</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span>
          <span class="s1">&#39;aux2&#39;</span><span class="p">:</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span>
          <span class="s1">&#39;aux3&#39;</span><span class="p">:</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span>
@@ -862,7 +863,32 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_config</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;a-b&#39;</span><span class="p">]:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_VOLT_TO_N</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CURR_TO_N</span><span class="p">[</span><span class="n">s</span><span class="p">]</span></div>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_CURR_TO_N</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+
+<div class="viewcode-block" id="SR830.autorange"><a class="viewcode-back" href="../../../../api/generated/qcodes.instrument_drivers.stanford_research.html#qcodes.instrument_drivers.stanford_research.SR830.SR830.autorange">[docs]</a>    <span class="k">def</span> <span class="nf">autorange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_changes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Automatically changes the sensitivity of the instrument according to</span>
+<span class="sd">        the R value and defined max_changes.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            max_changes: Maximum number of steps allowing the function to</span>
+<span class="sd">                automatically change the sensitivity (default is 1). The actual</span>
+<span class="sd">                number of steps needed to change to the optimal sensitivity may</span>
+<span class="sd">                be more or less than this maximum.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">autorange_once</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">R</span><span class="p">()</span>
+            <span class="n">sens</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sensitivity</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="mf">0.9</span> <span class="o">*</span> <span class="n">sens</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">increment_sensitivity</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">sens</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decrement_sensitivity</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">sets</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">autorange_once</span><span class="p">()</span> <span class="ow">and</span> <span class="n">sets</span> <span class="o">&lt;</span> <span class="n">max_changes</span><span class="p">:</span>
+            <span class="n">sets</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time_constant</span><span class="p">())</span></div></div>
 </pre></div>
 
            </div>
