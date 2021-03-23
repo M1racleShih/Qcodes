@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                0.23.0+113.g3a12786886
+                0.23.0+162.g6356311e57
               </div>
             
           
@@ -733,7 +733,7 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>0</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="15"><ul class="simple">
+<tr class="row-odd"><td rowspan="28"><ul class="simple">
 <li><p><strong>dataset</strong></p></li>
 </ul>
 </td>
@@ -792,20 +792,11 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-odd"><td><p>default</p></td>
 <td colspan="3"><p>False</p></td>
 </tr>
-<tr class="row-even"><td rowspan="8"><ul class="simple">
-<li><p><strong>telemetry</strong></p></li>
-</ul>
-</td>
-<td><p>type</p></td>
-<td colspan="4"><p><em>object</em></p></td>
-</tr>
-<tr class="row-odd"><td colspan="5"><p>properties</p></td>
-</tr>
 <tr class="row-even"><td rowspan="3"><ul class="simple">
-<li><p>enabled</p></li>
+<li><p>export_automatic</p></li>
 </ul>
 </td>
-<td colspan="4"><p>Whether or not to enable sending telemetry data to the developers of QCoDeS (or elsewhere)</p></td>
+<td colspan="4"><p>Should the data be exported automatically when a measurement is completed? If this is set ‘export_type’ must be set to a non null value.</p></td>
 </tr>
 <tr class="row-odd"><td><p>type</p></td>
 <td colspan="3"><p><em>boolean</em></p></td>
@@ -813,16 +804,76 @@ The configuration is modeled after the module structure plus some higher level s
 <tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>False</p></td>
 </tr>
-<tr class="row-odd"><td rowspan="3"><ul class="simple">
-<li><p>instrumentation_key</p></li>
+<tr class="row-odd"><td rowspan="4"><ul class="simple">
+<li><p>export_type</p></li>
 </ul>
 </td>
-<td colspan="4"><p>A valid Azure Application Insights instrumentation key</p></td>
+<td colspan="4"><p>Data export type for exporting datasets to disk after a measurement finishes. Does not export if set to null (default). Currently supported type(s): netcdf, csv</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td colspan="3"><p><em>string</em> / <em>null</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>enum</p></td>
+<td colspan="3"><p>netcdf, csv, None</p></td>
+</tr>
+<tr class="row-even"><td><p>default</p></td>
+<td colspan="3"><p>null</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><ul class="simple">
+<li><p>export_path</p></li>
+</ul>
+</td>
+<td colspan="4"><p>Data export path for exporting datasets to disk after a measurement finishes. Only activated if export_type is set</p></td>
 </tr>
 <tr class="row-even"><td><p>type</p></td>
 <td colspan="3"><p><em>string</em></p></td>
 </tr>
 <tr class="row-odd"><td><p>default</p></td>
+<td colspan="3"><p>~</p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><ul class="simple">
+<li><p>export_prefix</p></li>
+</ul>
+</td>
+<td colspan="4"><p>Prefix to add to filename for exporting datasets to disk after a measurement finishes. Only activated if export_type is set</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td colspan="3"><p><em>string</em></p></td>
+</tr>
+<tr class="row-even"><td><p>default</p></td>
+<td colspan="3"><p>qcodes_</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="8"><ul class="simple">
+<li><p><strong>telemetry</strong></p></li>
+</ul>
+</td>
+<td><p>type</p></td>
+<td colspan="4"><p><em>object</em></p></td>
+</tr>
+<tr class="row-even"><td colspan="5"><p>properties</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><ul class="simple">
+<li><p>enabled</p></li>
+</ul>
+</td>
+<td colspan="4"><p>Whether or not to enable sending telemetry data to the developers of QCoDeS (or elsewhere)</p></td>
+</tr>
+<tr class="row-even"><td><p>type</p></td>
+<td colspan="3"><p><em>boolean</em></p></td>
+</tr>
+<tr class="row-odd"><td><p>default</p></td>
+<td colspan="3"><p>False</p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><ul class="simple">
+<li><p>instrumentation_key</p></li>
+</ul>
+</td>
+<td colspan="4"><p>A valid Azure Application Insights instrumentation key</p></td>
+</tr>
+<tr class="row-odd"><td><p>type</p></td>
+<td colspan="3"><p><em>string</em></p></td>
+</tr>
+<tr class="row-even"><td><p>default</p></td>
 <td colspan="3"><p>00000000-0000-0000-0000-000000000000</p></td>
 </tr>
 </tbody>
