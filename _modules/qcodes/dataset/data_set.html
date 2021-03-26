@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.23.0+177.g5879eb216e
+                0.23.0+186.g25c45c6c42
               </div>
             
           
@@ -1414,8 +1414,15 @@
                 <span class="n">paramspec_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paramspecs</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">dim</span><span class="p">)]</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
                 <span class="n">xrdataset</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">dim</span><span class="p">)]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">paramspec_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
 
-        <span class="n">xrdataset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;sample_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_name</span>
-        <span class="n">xrdataset</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;exp_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_name</span>
+        <span class="n">xrdataset</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+            <span class="s2">&quot;sample_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sample_name</span><span class="p">,</span>
+            <span class="s2">&quot;exp_name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">exp_name</span><span class="p">,</span>
+            <span class="s2">&quot;snapshot&quot;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">snapshot</span><span class="p">),</span>
+            <span class="s2">&quot;guid&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">guid</span><span class="p">,</span>
+            <span class="s2">&quot;run_timestamp&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_timestamp</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;completed_timestamp&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">completed_timestamp</span><span class="p">()</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;run_id&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_id</span>
+        <span class="p">})</span>
 
         <span class="k">return</span> <span class="n">xrdataset</span>
 
@@ -1474,11 +1481,18 @@
 
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">subdict</span> <span class="ow">in</span> <span class="n">datadict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generate_pandas_index</span><span class="p">(</span><span class="n">subdict</span><span class="p">)</span>
-            <span class="n">xrdarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_to_dataframe</span><span class="p">(</span>
-                <span class="n">subdict</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span>
-            <span class="n">paramspec_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paramspecs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
-            <span class="n">xrdarray</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">paramspec_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
-            <span class="n">data_xrdarray_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xrdarray</span>
+            <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">index</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">_name</span> <span class="ow">in</span> <span class="n">subdict</span><span class="p">:</span>
+                    <span class="n">data_xrdarray_dict</span><span class="p">[</span><span class="n">_name</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_to_dataframe</span><span class="p">(</span>
+                        <span class="n">subdict</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()[</span><span class="n">_name</span><span class="p">]</span>
+                    <span class="n">paramspec_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paramspecs</span><span class="p">[</span><span class="n">_name</span><span class="p">]</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
+                    <span class="n">data_xrdarray_dict</span><span class="p">[</span><span class="n">_name</span><span class="p">]</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">paramspec_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">xrdarray</span><span class="p">:</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_to_dataframe</span><span class="p">(</span>
+                    <span class="n">subdict</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span><span class="o">.</span><span class="n">to_xarray</span><span class="p">()[</span><span class="n">name</span><span class="p">]</span>
+                <span class="n">data_xrdarray_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">xrdarray</span>
+                <span class="n">paramspec_dict</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paramspecs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">_to_dict</span><span class="p">()</span>
+                <span class="n">xrdarray</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">paramspec_dict</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
 
         <span class="k">return</span> <span class="n">data_xrdarray_dict</span>
 
@@ -1511,6 +1525,8 @@
 <span class="sd">            single_file: If true, merges the data of same length of multiple</span>
 <span class="sd">                         dependent parameters to a single file.</span>
 <span class="sd">            single_file_name: User defined name for the data to be concatenated.</span>
+<span class="sd">                              If no extension is passed (.dat, .csv or .txt),</span>
+<span class="sd">                              .dat is automatically appended.</span>
 
 <span class="sd">        Raises:</span>
 <span class="sd">            DataLengthException: If the data of multiple parameters have not same</span>
