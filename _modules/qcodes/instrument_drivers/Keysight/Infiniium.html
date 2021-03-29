@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                0.23.0+208.g41ed065571
+                0.23.0+216.g6d7741b461
               </div>
             
           
@@ -235,6 +235,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">setpoints</span> <span class="o">=</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">xdata</span><span class="p">),</span> <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">npts</span><span class="p">,</span> <span class="p">)</span>
 
+        <span class="c1"># set up the instrument</span>
+        <span class="c1"># ---------------------------------------------------------------------</span>
+
         <span class="c1"># make this on a per channel basis?</span>
         <span class="n">root_instrument</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">root_instrument</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">root_instrument</span><span class="p">,</span> <span class="n">Infiniium</span><span class="p">)</span>
@@ -262,8 +265,6 @@
 
         <span class="c1"># get intrument state</span>
         <span class="n">state</span> <span class="o">=</span> <span class="n">instr</span><span class="o">.</span><span class="n">ask</span><span class="p">(</span><span class="s1">&#39;:RSTate?&#39;</span><span class="p">)</span>
-        <span class="c1"># realtime mode: only one trigger is used</span>
-        <span class="n">instr</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">acquire_mode</span><span class="p">(</span><span class="s1">&#39;RTIMe&#39;</span><span class="p">)</span>
 
         <span class="c1"># acquire the data</span>
         <span class="c1"># ---------------------------------------------------------------------</span>
